@@ -20,7 +20,7 @@ argparse
 
 # Command
 ```
-python .\_check_cuda_numerical_stability.py -h
+python _check_cuda_numerical_stability.py -h
 usage: _check_cuda_numerical_stability.py [-h] [-i I] [-t T] [-bs BS]
 
 Used to detect CUDA numerical stability problems.
