@@ -93,6 +93,12 @@ if __name__ == '__main__':
     cudnn.benchmark = False
     cudnn.deterministic = True
     torch.set_grad_enabled(False)
+    # Close tf32 features. Fix low numerical accuracy on rtx30xx gpu.
+    try:
+        torch.backends.cuda.matmul.allow_tf32 = False
+        torch.backends.cudnn.allow_tf32 = False
+    except AttributeError as e:
+        print('Info. This pytorch version is not support with tf32.')
 
     parse = argparse.ArgumentParser(description='Used to detect CUDA numerical stability problems.')
     parse.add_argument('-i', type=int, help='card id. Which cuda card do you want to test. default: 0', default=0)
